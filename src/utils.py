@@ -28,8 +28,14 @@ def parse_date(py_obj_dict):
 
 
 def take_date(date_str):
-    pass
-
+    year = int(date_str[:4])
+    month = int(date_str[5:7])
+    day = int(date_str[8:10])
+    hours = int(date_str[11:13])
+    minutes = int(date_str[14:16])
+    seconds = int(date_str[17:19])
+    microseconds = int(date_str[-6:])
+    return datetime(year, month, day, hours, minutes, seconds, microseconds)
 
 def take_operation(date, py_obj):
     pass
@@ -41,4 +47,4 @@ def format_operation(py_dict):
 
 
 if __name__ == "__main__":
-    filter_canceled(drop_json("../operations.json"))
+    pass
