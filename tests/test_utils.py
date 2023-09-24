@@ -7,6 +7,10 @@ with open(join("..", "operations.json")) as file:
     py_obj = json.load(file)
 
 
+def test_drop_json():
+    assert utils.drop_json(join("..", "operations.json")) == py_obj
+
+
 def test_filter_canceled():
     py_lst = utils.filter_canceled(py_obj)
     flag_cancelled = False
@@ -18,8 +22,7 @@ def test_filter_canceled():
     assert not flag_cancelled
 
 
-def test_drop_json():
-    assert utils.drop_json(join("..", "operations.json")) == py_obj
+py_obj = utils.filter_canceled(py_obj)
 
 
 def test_parse_date():

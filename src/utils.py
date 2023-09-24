@@ -24,7 +24,7 @@ def drop_json(json_file):
 
 
 def parse_date(py_obj_dict):
-    pass
+    return py_obj_dict["date"]
 
 
 def take_date(date_str):
