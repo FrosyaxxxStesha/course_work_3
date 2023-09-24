@@ -71,13 +71,15 @@ def format_operation(py_dict):
         if "Счет" in py_dict["from"]:
             from_op = "Счет " + "**" + py_dict["from"][-4:]
         else:
-            from_op = py_dict["from"][:-16] + py_dict["from"][-16: -12] + " " + py_dict["from"][-12:-10] + "** **** " + py_dict["from"][-4:]
+            from_op = py_dict["from"][:-16] + py_dict["from"][-16: -12] + " " + py_dict["from"][-12:-10] + "** **** " \
+                      + py_dict["from"][-4:]
     except KeyError:
         from_op = "?"
     if "Счет" in py_dict["to"]:
         to = "Счет " + "**" + py_dict["to"][-4:]
     else:
-        to = py_dict["to"][:-16] + py_dict["to"][-16: -12] + " " + py_dict["to"][-12:-10] + "** **** " + py_dict["to"][-4:]
+        to = py_dict["to"][:-16] + py_dict["to"][-16: -12] + " " + py_dict["to"][-12:-10] + "** **** " + \
+             py_dict["to"][-4:]
     return (
                                              date,
                                              py_dict["description"],
@@ -86,4 +88,3 @@ def format_operation(py_dict):
                                              py_dict["operationAmount"]["amount"],
                                              py_dict["operationAmount"]["currency"]["name"]
                                              )
-

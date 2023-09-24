@@ -1,14 +1,14 @@
 from datetime import datetime
 import json
 from src import utils
-from os.path import join
 
-with open("../src/operations.json") as file:
+
+with open("operations.json") as file:
     py_obj = json.load(file)
 
 
 def test_drop_json():
-    assert utils.drop_json("../src/operations.json") == py_obj
+    assert utils.drop_json("operations.json") == py_obj
 
 
 def test_filter_canceled():
