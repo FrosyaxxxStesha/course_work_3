@@ -22,11 +22,11 @@ def test_filter_canceled():
     assert not flag_cancelled
 
 
-py_obj = utils.filter_canceled(py_obj)
+py_obj_filtered = utils.filter_canceled(py_obj)
 
 
 def test_parse_date():
-    for i in py_obj:
+    for i in py_obj_filtered:
         assert utils.parse_date(i) == i["date"]
 
 
@@ -35,12 +35,12 @@ def test_take_date():
 
 
 def test_take_operation():
-    for i in py_obj:
-        assert utils.take_operation(i["date"], py_obj) == i
+    for i in py_obj_filtered:
+        assert utils.take_operation(i["date"], py_obj_filtered) == i
 
 
 def test_format_operation():
-    for i in py_obj:
+    for i in py_obj_filtered:
         date = i["date"][8:10] + "." + i["date"][5:7] + "." + i["date"][:4]
         try:
             if "Счет" in i["to"]:
