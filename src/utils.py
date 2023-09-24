@@ -1,4 +1,5 @@
 from datetime import datetime
+from json import load
 
 
 def filter_canceled(py_obj_list):
@@ -6,7 +7,9 @@ def filter_canceled(py_obj_list):
 
 
 def drop_json(json_file):
-    pass
+    with open(json_file) as file:
+        py_obj = load(file)
+    return py_obj
 
 
 def parse_date(py_obj_dict):

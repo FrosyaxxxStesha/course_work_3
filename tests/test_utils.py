@@ -1,8 +1,9 @@
 from datetime import datetime
 import json
 from src import utils
+from os.path import join
 
-with open("../operations.json") as file:
+with open(join("..", "operations.json")) as file:
     py_obj = json.load(file)
 
 
@@ -18,7 +19,7 @@ def test_filter_canceled():
 
 
 def test_drop_json():
-    assert type(utils.drop_json("operations.json")) == list
+    assert utils.drop_json(join("..", "operations.json")) == py_obj
 
 
 def test_parse_date():
