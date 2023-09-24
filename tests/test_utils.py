@@ -1,15 +1,20 @@
 from datetime import datetime
 import json
 from src import utils
+from os.path import join
 
-with open("../operations.json") as file:
+with open("../src/operations.json") as file:
     py_obj = json.load(file)
 
 
+def test_drop_json():
+    assert utils.drop_json("../src/operations.json") == py_obj
+
+
 def test_filter_canceled():
-    utils.filter_canceled(py_obj)
+    py_lst = utils.filter_canceled(py_obj)
     flag_cancelled = False
-    for i in py_obj:
+    for i in py_lst:
         if i["state"] != "EXECUTED":
             flag_cancelled = True
             break
@@ -17,12 +22,11 @@ def test_filter_canceled():
     assert not flag_cancelled
 
 
-def test_drop_json():
-    assert type(utils.drop_json("operations.json")) == list
+py_obj_filtered = utils.filter_canceled(py_obj)
 
 
 def test_parse_date():
-    for i in py_obj:
+    for i in py_obj_filtered:
         assert utils.parse_date(i) == i["date"]
 
 
@@ -31,18 +35,18 @@ def test_take_date():
 
 
 def test_take_operation():
-    for i in py_obj:
-        assert utils.take_operation(i["date"], py_obj) == i
+    for i in py_obj_filtered:
+        assert utils.take_operation(i["date"], py_obj_filtered) == i
 
 
 def test_format_operation():
-    for i in py_obj:
+    for i in py_obj_filtered:
         date = i["date"][8:10] + "." + i["date"][5:7] + "." + i["date"][:4]
         try:
-            if "Счет" in i["to"]:
-                from_op = "Счет " + "**" + i["to"][-4:]
+            if "Счет" in i["from"]:
+                from_op = "Счет " + "**" + i["from"][-4:]
             else:
-                from_op = i["to"][:-16] + i["to"][-16: -12] + " " + i["to"][-12:-10] + "** **** " + i["to"][-4:]
+                from_op = i["from"][:-16] + i["from"][-16: -12] + " " + i["from"][-12:-10] + "** **** " + i["from"][-4:]
         except KeyError:
             from_op = "?"
         if "Счет" in i["to"]:
