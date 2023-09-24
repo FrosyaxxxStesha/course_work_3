@@ -8,9 +8,9 @@ with open(join("..", "operations.json")) as file:
 
 
 def test_filter_canceled():
-    utils.filter_canceled(py_obj)
+    py_lst = utils.filter_canceled(py_obj)
     flag_cancelled = False
-    for i in py_obj:
+    for i in py_lst:
         if i["state"] != "EXECUTED":
             flag_cancelled = True
             break

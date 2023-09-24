@@ -3,7 +3,18 @@ from json import load
 
 
 def filter_canceled(py_obj_list):
-    pass
+    without_canc = []
+
+    for py_dict in py_obj_list:
+
+        try:
+            if py_dict["state"] == "EXECUTED":
+                without_canc.append(py_dict)
+
+        except KeyError:
+            continue
+
+    return without_canc
 
 
 def drop_json(json_file):
@@ -26,3 +37,8 @@ def take_operation(date, py_obj):
 
 def format_operation(py_dict):
     pass
+
+
+
+if __name__ == "__main__":
+    filter_canceled(drop_json("../operations.json"))
