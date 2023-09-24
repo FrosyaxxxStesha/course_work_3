@@ -37,13 +37,15 @@ def take_date(date_str):
     microseconds = int(date_str[-6:])
     return datetime(year, month, day, hours, minutes, seconds, microseconds)
 
+
 def take_operation(date, py_obj):
-    pass
+    for operation in py_obj:
+        if operation["date"] == date:
+            return operation
 
 
 def format_operation(py_dict):
     pass
-
 
 
 if __name__ == "__main__":
