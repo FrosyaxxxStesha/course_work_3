@@ -68,10 +68,10 @@ def format_operation(py_dict):
     """
     date = py_dict["date"][8:10] + "." + py_dict["date"][5:7] + "." + py_dict["date"][:4]
     try:
-        if "Счет" in py_dict["to"]:
-            from_op = "Счет " + "**" + py_dict["to"][-4:]
+        if "Счет" in py_dict["from"]:
+            from_op = "Счет " + "**" + py_dict["from"][-4:]
         else:
-            from_op = py_dict["to"][:-16] + py_dict["to"][-16: -12] + " " + py_dict["to"][-12:-10] + "** **** " + py_dict["to"][-4:]
+            from_op = py_dict["from"][:-16] + py_dict["from"][-16: -12] + " " + py_dict["from"][-12:-10] + "** **** " + py_dict["from"][-4:]
     except KeyError:
         from_op = "?"
     if "Счет" in py_dict["to"]:
