@@ -87,6 +87,3 @@ def format_operation(py_dict):
                                              py_dict["operationAmount"]["currency"]["name"]
                                              )
 
-
-if __name__ == "__main__":
-    pass
